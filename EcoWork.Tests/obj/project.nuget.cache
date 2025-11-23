@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PEDzEK47X0w=",
+  "dgSpecHash": "Ci6xke9HJ7c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\EcoWork.Tests.csproj",
+  "projectFilePath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\EcoWork.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\murib\\.nuget\\packages\\aspnetcore.healthchecks.npgsql\\9.0.0\\aspnetcore.healthchecks.npgsql.9.0.0.nupkg.sha512",
     "C:\\Users\\murib\\.nuget\\packages\\aspnetcore.healthchecks.ui.client\\9.0.0\\aspnetcore.healthchecks.ui.client.9.0.0.nupkg.sha512",
@@ -96,9 +96,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "EcoWork.Api depende de OpenTelemetry.Instrumentation.EntityFrameworkCore (>= 1.0.0-rc9.1) mas OpenTelemetry.Instrumentation.EntityFrameworkCore 1.0.0-rc9.1 não foi encontrado. OpenTelemetry.Instrumentation.EntityFrameworkCore 1.10.0-beta.1 foi resolvido.",
-      "projectPath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\EcoWork.Tests.csproj",
+      "projectPath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\EcoWork.Tests.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\EcoWork.Tests.csproj",
+      "filePath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\EcoWork.Tests.csproj",
       "libraryId": "OpenTelemetry.Instrumentation.EntityFrameworkCore",
       "targetGraphs": [
         "net8.0"
