@@ -4,14 +4,18 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copia tudo
-COPY . .
+# Copia arquivos de projeto individualmente (melhor cache)
+COPY EcoWork.Api/EcoWork.Api.csproj EcoWork.Api/
+COPY EcoWork.Tests/EcoWork.Tests.csproj EcoWork.Tests/
 
 # Restaura dependências
-RUN dotnet restore "EcoWork.Api.csproj"
+RUN dotnet restore EcoWork.Api/EcoWork.Api.csproj
 
-# Compila
-RUN dotnet publish "EcoWork.Api.csproj" -c Release -o /app/publish
+# Copia todo o restante do código
+COPY . .
+
+# Publica aplicação
+RUN dotnet publish EcoWork.Api/EcoWork.Api.csproj -c Release -o /app/publish
 
 # =============================
 # STAGE 2 — Runtime
@@ -19,11 +23,11 @@ RUN dotnet publish "EcoWork.Api.csproj" -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
+# Copia artefatos publicados
 COPY --from=build /app/publish .
 
-# Porta padrão
-EXPOSE 8080
-
+# Porta obrigatória do Render
 ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "EcoWork.Api.dll"]
