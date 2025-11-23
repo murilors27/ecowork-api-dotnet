@@ -1,9 +1,5 @@
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Logo_FIAP.png" width="160">
-</p>
-
-<h2 align="center">🌱 EcoWork — API .NET 8</h2>
-<p align="center">Global Solution – Futuro do Trabalho • FIAP 2025</p>
+<h2>🌱 EcoWork — API .NET 8</h2>
+<p>Global Solution – Futuro do Trabalho • FIAP 2025</p>
 
 ---
 
