@@ -2,6 +2,7 @@ using AutoMapper;
 using EcoWork.Api.Dtos;
 using EcoWork.Api.Models;
 using EcoWork.Api.Persistence;
+using EcoWork.Api.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,20 +28,17 @@ namespace EcoWork.Api.Controllers.v1
             var query = _context.MetasSustentaveis.AsNoTracking();
 
             var total = await query.CountAsync();
-
             var items = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-            var result = items
-                .Select(meta =>
-                {
-                    var dto = _mapper.Map<MetaSustentavelResponseDto>(meta);
-                    dto = AddHateoasLinks(dto);
-                    return dto;
-                })
-                .ToList();
+            var result = items.Select(meta =>
+            {
+                var dto = _mapper.Map<MetaSustentavelResponseDto>(meta);
+                dto.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", dto.Id);
+                return dto;
+            }).ToList();
 
             return Ok(new
             {
@@ -62,7 +60,7 @@ namespace EcoWork.Api.Controllers.v1
                 return NotFound();
 
             var dto = _mapper.Map<MetaSustentavelResponseDto>(meta);
-            dto = AddHateoasLinks(dto);
+            dto.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", dto.Id);
 
             return Ok(dto);
         }
@@ -77,7 +75,7 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             var response = _mapper.Map<MetaSustentavelResponseDto>(entity);
-            response = AddHateoasLinks(response);
+            response.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", response.Id);
 
             return CreatedAtAction(nameof(GetById), new { id = entity.Id }, response);
         }
@@ -99,7 +97,7 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             var response = _mapper.Map<MetaSustentavelResponseDto>(meta);
-            response = AddHateoasLinks(response);
+            response.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", response.Id);
 
             return Ok(response);
         }
@@ -117,27 +115,6 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        // HATEOAS
-        private MetaSustentavelResponseDto AddHateoasLinks(MetaSustentavelResponseDto dto)
-        {
-            var id = dto.Id;
-
-            return new MetaSustentavelResponseDto
-            {
-                Id = dto.Id,
-                Titulo = dto.Titulo,
-                Descricao = dto.Descricao,
-                EmpresaId = dto.EmpresaId,
-                Pontos = dto.Pontos,
-                Links = new Dictionary<string, string>
-                {
-                    { "self", Url.Action(nameof(GetById), new { id })! },
-                    { "update", Url.Action(nameof(Update), new { id })! },
-                    { "delete", Url.Action(nameof(Delete), new { id })! }
-                }
-            };
         }
     }
 }
