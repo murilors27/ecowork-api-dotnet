@@ -289,11 +289,6 @@ Este projeto demonstra:
 A EcoWork API representa uma solução clara, escalável e alinhada com o tema **Futuro do Trabalho**.
 
 ---
-## Apresentação e Demonstração Técnica 
-
-🔗 *Link para o vídeo:* [em breve]
-
----
 
 ## Equipe de Desenvolvimento
 
