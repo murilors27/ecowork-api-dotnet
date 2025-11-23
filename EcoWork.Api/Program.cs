@@ -21,7 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // ----------------------------
-// Controllers (ESSENCIAL)
+// Controllers
 // ----------------------------
 builder.Services.AddControllers();
 
@@ -64,7 +64,7 @@ builder.Services.AddOpenTelemetry()
 var app = builder.Build();
 
 // ----------------------------
-// Pipeline
+// Swagger em Dev e Prod
 // ----------------------------
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
@@ -77,6 +77,16 @@ app.UseHttpsRedirection();
 app.MapHealthChecks("/health");
 
 app.MapControllers();
+
+// -------------------------------------------------
+// MIGRATIONS AUTOMÁTICAS AO INICIAR
+// (ESSENCIAL PARA O RENDER!)
+// -------------------------------------------------
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<EcoWorkDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
 
