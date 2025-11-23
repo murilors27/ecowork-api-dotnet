@@ -213,6 +213,15 @@ https://localhost:5001/swagger
 
 # Rotas Principais
 
+### Empresas
+| Método | Rota | Descrição |
+|--------|----------|-------------|
+| GET | /api/v1/empresas | Lista paginada |
+| GET | /api/v1/empresas/{id} | Detalhes |
+| POST | /api/v1/empresas | Cria |
+| PUT | /api/v1/empresas/{id} | Atualiza |
+| DELETE | /api/v1/empresas/{id} | Remove |
+
 ## Departamentos
 | Método | Rota | Descrição |
 |--------|----------|-------------|
@@ -233,20 +242,151 @@ https://localhost:5001/swagger
 
 ---
 
-# Vídeo Demonstrativo (5 min)
+# Como Testar a API no Swagger
 
-Sugestão do fluxo:
+A API dispõe de um ambiente completo de testes interativos via **Swagger UI**, permitindo validar todas as operações CRUD sem a necessidade de ferramentas externas como Postman ou Insomnia.
 
-1. Abrir Swagger  
-2. Mostrar as rotas  
-3. Criar um novo recurso  
-4. Listar com paginação  
-5. Mostrar HATEOAS no retorno  
-6. Executar um PUT  
-7. Excluir com DELETE  
-8. Mostrar `/health`  
-9. Mostrar o tracing aparecendo no console  
-10. Mostrar testes rodando com sucesso  
+### Acessando o Swagger
+
+Abra no navegador:
+
+```
+https://ecowork-api-dotnet.onrender.com/swagger/index.html
+```
+
+Você verá todas as rotas organizadas por categoria.
+
+---
+
+## 1️⃣ Testando o CRUD de *Departamentos*
+
+### **1. GET – Listar Departamentos**
+- Rota: `GET /api/v1/departamentos`
+- Deve retornar uma lista (inicialmente vazia)
+- Não precisa enviar corpo
+
+### **2. POST – Criar Departamento**
+- Rota: `POST /api/v1/departamentos`
+- Exemplo de JSON:
+
+```json
+{
+  "nome": "Financeiro"
+}
+```
+
+Após executar, o Swagger exibirá o objeto criado, já com ID e links HATEOAS.
+
+### **3. GET/{id} – Consultar por ID**
+- Rota: `GET /api/v1/departamentos/1`
+- Deve retornar o item criado no passo anterior.
+
+### **4. PUT – Atualizar Departamento**
+- Rota: `PUT /api/v1/departamentos/1`
+- Body:
+
+```json
+{
+  "nome": "Departamento Financeiro"
+}
+```
+
+### **5. DELETE – Remover Departamento**
+- Rota: `DELETE /api/v1/departamentos/1`
+- Retorno esperado: `204 No Content`
+
+---
+
+## 2️⃣ Testando o CRUD de *Empresas*
+
+>  **IMPORTANTE**  
+> Para criar uma *Meta Sustentável*, você precisa de uma empresa válida.  
+> Portanto, sempre teste empresas antes de metas.
+
+### ➤ POST – Criar Empresa
+
+```json
+{
+  "nome": "EcoTech Solutions",
+  "cnpj": "12.345.678/0001-99",
+  "endereco": "Av. Paulista, 1000"
+}
+```
+
+### GET – Listar Empresas
+- Deve retornar a empresa criada
+
+### GET/{id} – Buscar por ID
+- Verifique o ID retornado (ex.: 1)
+
+### PUT – Atualizar Empresa
+
+```json
+{
+  "nome": "EcoTech Brasil",
+  "cnpj": "12.345.678/0001-99",
+  "endereco": "Av. Paulista, 2000"
+}
+```
+
+### DELETE – Remover Empresa
+- Só execute se não for testar metas depois.
+
+---
+
+## 3️⃣ Testando o CRUD de *Metas Sustentáveis*
+
+>  **Meta Sustentável depende de EmpresaId existente.**  
+> Se você enviar um ID inexistente, o banco vai rejeitar (erro 23503 – FK violation).
+
+### POST – Criar Meta Sustentável
+
+```json
+{
+  "titulo": "Redução de uso de papel",
+  "descricao": "Meta para incentivar o uso digital de documentos.",
+  "empresaId": 1,
+  "pontos": 50
+}
+```
+
+### GET – Listar Metas
+- Deve retornar a meta criada com links HATEOAS
+
+### GET/{id}
+
+```
+GET /api/v1/metassustentaveis/1
+```
+
+### PUT – Atualizar Meta
+
+```json
+{
+  "titulo": "Meta – Reduzir Papel",
+  "descricao": "Versão atualizada da meta.",
+  "empresaId": 1,
+  "pontos": 75
+}
+```
+
+### DELETE – Remover Meta
+
+```
+DELETE /api/v1/metassustentaveis/1
+```
+
+Retorno esperado: `204 No Content`
+
+---
+
+## Recomendações para Testar Sem Erros
+
+✔ Sempre crie **uma Empresa** antes de testar *Metas Sustentáveis*  
+✔ Use valores reais para IDs  
+✔ Verifique os retornos HATEOAS (links self, update, delete)  
+✔ Se o Swagger mostrar erro 404 na raiz do site, é normal — a API não tem rota `/`  
+✔ Utilize o botão **“Try it out”** em cada endpoint  
 
 ---
 
@@ -257,21 +397,6 @@ Sugestão do fluxo:
 | Deploy da API | https://ecowork-api-dotnet.onrender.com |
 | Swagger | https://ecowork-api-dotnet.onrender.com/swagger |
 | Health | https://ecowork-api-dotnet.onrender.com/health |
-
----
-
-# Instruções ao Professor
-
-A API está hospedada no Render, e **não utiliza autenticação**, garantindo acesso direto aos endpoints.
-
-Para facilitar a correção, basta:
-
-1. Acessar o **Swagger** pelo link acima  
-2. Testar live todos os endpoints  
-3. Verificar paginação e HATEOAS nas respostas  
-4. Acessar `/health` para validar o PostgreSQL  
-5. Confirmar versionamento em `/api/v1/...`  
-6. Avaliar testes executando via `dotnet test`  
 
 ---
 
