@@ -254,7 +254,6 @@ Sugestão do fluxo:
 
 | Tipo | Link |
 |------|------|
-| Repositório GitHub | https://github.com/murilors27/ecowork-api-dotnet |
 | Deploy da API | https://ecowork-api-dotnet.onrender.com |
 | Swagger | https://ecowork-api-dotnet.onrender.com/swagger |
 | Health | https://ecowork-api-dotnet.onrender.com/health |
