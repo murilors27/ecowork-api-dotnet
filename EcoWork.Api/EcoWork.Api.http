@@ -1,0 +1,6 @@
+@EcoWork.Api_HostAddress = http://localhost:5054
+
+GET {{EcoWork.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

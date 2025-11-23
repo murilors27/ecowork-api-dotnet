@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ecowork-api
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./EcoWork.Api/Dockerfile
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
