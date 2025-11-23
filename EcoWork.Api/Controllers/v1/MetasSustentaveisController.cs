@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace EcoWork.Api.Controllers.v1
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/metassustentaveis")]
     public class MetasSustentaveisController : ControllerBase
     {
         private readonly EcoWorkDbContext _context;
@@ -21,10 +21,12 @@ namespace EcoWork.Api.Controllers.v1
             _mapper = mapper;
         }
 
-        // GET /api/v1/metassustentaveis?page=1&pageSize=10
         [HttpGet]
         public async Task<IActionResult> GetAll(int page = 1, int pageSize = 10)
         {
+            page = Math.Max(page, 1);
+            pageSize = Math.Max(pageSize, 1);
+
             var query = _context.MetasSustentaveis.AsNoTracking();
 
             var total = await query.CountAsync();
@@ -36,7 +38,7 @@ namespace EcoWork.Api.Controllers.v1
             var result = items.Select(meta =>
             {
                 var dto = _mapper.Map<MetaSustentavelResponseDto>(meta);
-                dto.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", dto.Id);
+                dto.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/metassustentaveis", dto.Id);
                 return dto;
             }).ToList();
 
@@ -50,7 +52,6 @@ namespace EcoWork.Api.Controllers.v1
             });
         }
 
-        // GET /api/v1/metassustentaveis/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -60,12 +61,11 @@ namespace EcoWork.Api.Controllers.v1
                 return NotFound();
 
             var dto = _mapper.Map<MetaSustentavelResponseDto>(meta);
-            dto.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", dto.Id);
+            dto.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/metassustentaveis", dto.Id);
 
             return Ok(dto);
         }
 
-        // POST /api/v1/metassustentaveis
         [HttpPost]
         public async Task<IActionResult> Create(MetaSustentavelCreateDto dto)
         {
@@ -75,12 +75,11 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             var response = _mapper.Map<MetaSustentavelResponseDto>(entity);
-            response.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", response.Id);
+            response.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/metassustentaveis", response.Id);
 
             return CreatedAtAction(nameof(GetById), new { id = entity.Id }, response);
         }
 
-        // PUT /api/v1/metassustentaveis/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, MetaSustentavelCreateDto dto)
         {
@@ -97,12 +96,11 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             var response = _mapper.Map<MetaSustentavelResponseDto>(meta);
-            response.Links = HateoasHelper.BuildLinks(Url, "MetasSustentaveis", response.Id);
+            response.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/metassustentaveis", response.Id);
 
             return Ok(response);
         }
 
-        // DELETE /api/v1/metassustentaveis/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

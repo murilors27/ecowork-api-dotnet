@@ -2,13 +2,14 @@ using AutoMapper;
 using EcoWork.Api.Dtos;
 using EcoWork.Api.Models;
 using EcoWork.Api.Persistence;
+using EcoWork.Api.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcoWork.Api.Controllers.v1
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/departamentos")]
     public class DepartamentosController : ControllerBase
     {
         private readonly EcoWorkDbContext _context;
@@ -20,10 +21,12 @@ namespace EcoWork.Api.Controllers.v1
             _mapper = mapper;
         }
 
-        // GET /api/v1/departamentos?page=1&pageSize=10
         [HttpGet]
         public async Task<IActionResult> GetAll(int page = 1, int pageSize = 10)
         {
+            page = Math.Max(page, 1);
+            pageSize = Math.Max(pageSize, 1);
+
             var query = _context.Departamentos.AsNoTracking();
 
             var total = await query.CountAsync();
@@ -32,14 +35,12 @@ namespace EcoWork.Api.Controllers.v1
                 .Take(pageSize)
                 .ToListAsync();
 
-            var result = items
-                .Select(d =>
-                {
-                    var dto = _mapper.Map<DepartamentoResponseDto>(d);
-                    dto = AddHateoasLinks(dto);
-                    return dto;
-                })
-                .ToList();
+            var result = items.Select(dep =>
+            {
+                var dto = _mapper.Map<DepartamentoResponseDto>(dep);
+                dto.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/departamentos", dto.Id);
+                return dto;
+            }).ToList();
 
             return Ok(new
             {
@@ -51,7 +52,6 @@ namespace EcoWork.Api.Controllers.v1
             });
         }
 
-        // GET /api/v1/departamentos/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -61,12 +61,11 @@ namespace EcoWork.Api.Controllers.v1
                 return NotFound();
 
             var dto = _mapper.Map<DepartamentoResponseDto>(dep);
-            dto = AddHateoasLinks(dto);
+            dto.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/departamentos", dto.Id);
 
             return Ok(dto);
         }
 
-        // POST /api/v1/departamentos
         [HttpPost]
         public async Task<IActionResult> Create(DepartamentoCreateDto dto)
         {
@@ -76,12 +75,11 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             var response = _mapper.Map<DepartamentoResponseDto>(entity);
-            response = AddHateoasLinks(response);
+            response.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/departamentos", response.Id);
 
             return CreatedAtAction(nameof(GetById), new { id = entity.Id }, response);
         }
 
-        // PUT /api/v1/departamentos/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, DepartamentoCreateDto dto)
         {
@@ -95,12 +93,11 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             var response = _mapper.Map<DepartamentoResponseDto>(dep);
-            response = AddHateoasLinks(response);
+            response.Links = HateoasHelper.BuildLinks(HttpContext, "api/v1/departamentos", response.Id);
 
             return Ok(response);
         }
 
-        // DELETE /api/v1/departamentos/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -113,25 +110,6 @@ namespace EcoWork.Api.Controllers.v1
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        // MÉTODO AUXILIAR DE HATEOAS
-        private DepartamentoResponseDto AddHateoasLinks(DepartamentoResponseDto dto)
-        {
-            var id = dto.Id;
-
-            return new DepartamentoResponseDto
-            {
-                Id = dto.Id,
-                Nome = dto.Nome,
-
-                Links = new Dictionary<string, string>
-                {
-                    { "self", Url.Action(nameof(GetById), new { id })! },
-                    { "update", Url.Action(nameof(Update), new { id })! },
-                    { "delete", Url.Action(nameof(Delete), new { id })! }
-                }
-            };
         }
     }
 }
