@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcoWork.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9babb2190251190dd38705974fa96215bc551530")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcoWork.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcoWork.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

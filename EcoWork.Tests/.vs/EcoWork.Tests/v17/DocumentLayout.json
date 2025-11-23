@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\",
+  "WorkspaceRootPath": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\DepartamentoTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\CustomWebApplicationFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CustomWebApplicationFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\DepartamentoTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DepartamentoTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\EcoWork.Tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\EcoWork.Tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcoWork.Tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\CustomWebApplicationFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CustomWebApplicationFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,41 +22,40 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "EcoWork.Tests.csproj",
-              "DocumentMoniker": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\EcoWork.Tests.csproj",
+              "DocumentMoniker": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\EcoWork.Tests.csproj",
               "RelativeDocumentMoniker": "EcoWork.Tests.csproj",
-              "ToolTip": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\EcoWork.Tests.csproj",
+              "ToolTip": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\EcoWork.Tests.csproj",
               "RelativeToolTip": "EcoWork.Tests.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-23T16:10:25.276Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T16:10:25.276Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CustomWebApplicationFactory.cs",
-              "DocumentMoniker": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\CustomWebApplicationFactory.cs",
+              "DocumentMoniker": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\CustomWebApplicationFactory.cs",
               "RelativeDocumentMoniker": "CustomWebApplicationFactory.cs",
-              "ToolTip": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\CustomWebApplicationFactory.cs",
+              "ToolTip": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\CustomWebApplicationFactory.cs",
               "RelativeToolTip": "CustomWebApplicationFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-23T16:09:17.159Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DepartamentoTests.cs",
-              "DocumentMoniker": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\DepartamentoTests.cs",
+              "DocumentMoniker": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\DepartamentoTests.cs",
               "RelativeDocumentMoniker": "DepartamentoTests.cs",
-              "ToolTip": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\EcoWork.Tests\\DepartamentoTests.cs",
+              "ToolTip": "C:\\Users\\murib\\Desktop\\FIAP\\.net\\gs2\\ecowork\\EcoWork.Tests\\DepartamentoTests.cs",
               "RelativeToolTip": "DepartamentoTests.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

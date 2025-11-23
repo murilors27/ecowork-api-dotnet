@@ -79,13 +79,15 @@ app.MapHealthChecks("/health");
 app.MapControllers();
 
 // -------------------------------------------------
-// MIGRATIONS AUTOMÁTICAS AO INICIAR
-// (ESSENCIAL PARA O RENDER!)
+// MIGRATIONS AUTOMÁTICAS — DESABILITADAS EM TESTES
 // -------------------------------------------------
-using (var scope = app.Services.CreateScope())
+if (!app.Environment.IsEnvironment("Testing"))
 {
-    var db = scope.ServiceProvider.GetRequiredService<EcoWorkDbContext>();
-    db.Database.Migrate();
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<EcoWorkDbContext>();
+        db.Database.Migrate();
+    }
 }
 
 app.Run();

@@ -10,10 +10,12 @@ public class CustomWebApplicationFactory
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        // Forçar ambiente Testing
         builder.UseEnvironment("Testing");
 
         builder.ConfigureServices(services =>
         {
+            // Remove o DbContext configurado no Program.cs
             var descriptor = services.SingleOrDefault(
                 d => d.ServiceType == typeof(DbContextOptions<EcoWorkDbContext>)
             );
@@ -21,11 +23,13 @@ public class CustomWebApplicationFactory
             if (descriptor != null)
                 services.Remove(descriptor);
 
+            // Adiciona banco de testes InMemory
             services.AddDbContext<EcoWorkDbContext>(options =>
             {
                 options.UseInMemoryDatabase("EcoWorkTests");
             });
 
+            // Garantir que o banco em memória começa limpo
             var sp = services.BuildServiceProvider();
 
             using var scope = sp.CreateScope();
