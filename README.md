@@ -52,7 +52,7 @@ EcoWork.Tests/
 
 ---
 
-# **1. Versionamento da API**
+# **1. Versionamento da API (10 pts)**
 
 Toda a API segue o padrão:
 
